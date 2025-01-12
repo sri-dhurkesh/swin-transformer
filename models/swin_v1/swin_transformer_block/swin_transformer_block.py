@@ -2,8 +2,8 @@
 
 import torch
 from torch import nn
-from swin_transformer_block.window_attention import WindowMSA
-from swin_transformer_block.mlp import Mlp
+from models.swin_v1.swin_transformer_block.window_attention import WindowMSA
+from models.swin_v1.swin_transformer_block.mlp import Mlp
 
 
 class SwinTransformerBlock(nn.Module):

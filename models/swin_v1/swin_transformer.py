@@ -3,15 +3,14 @@
 from typing import List, Tuple
 import torch
 from torch import nn
-import sys
+import torch.nn.functional as F
+from mmengine.model import BaseModel
+from models.swin_v1.patch_embedding import PatchEmbeddings
+from models.swin_v1.patch_merging import PatchMerging
+from models.swin_v1.swin_transformer_block.swin_transformer_block import SwinTransformerBlock
 
-print(sys.path)
-from patch_embedding import PatchEmbeddings
-from patch_merging import PatchMerging
-from swin_transformer_block.swin_transformer_block import SwinTransformerBlock
 
-
-class SwinTransformer(nn.Module):
+class SwinTransformer(BaseModel):
     def __init__(
         self,
         image_size: tuple,
@@ -21,6 +20,7 @@ class SwinTransformer(nn.Module):
         num_heads: List[int],
         embed_dim: int,
         window_size: Tuple[int, int],
+        num_classes: int,
         **kwargs,
     ):
         super().__init__()
@@ -33,7 +33,10 @@ class SwinTransformer(nn.Module):
         self.num_layers = len(depths)
         self.window_size = window_size
         self.patches_resolution = (self.image_size[0] // self.patch_size[0], self.image_size[1] // self.patch_size[1])
-
+        self.num_features = 8 * self.embed_dim
+        self.norm_layer = nn.LayerNorm(self.num_features)
+        self.avgpool = nn.AdaptiveAvgPool1d(1)
+        self.classification_head = nn.Linear(self.num_features, num_classes)
         # patch embeddings
         self.patch_embed = PatchEmbeddings(
             image_resolution=self.image_size,
@@ -56,7 +59,6 @@ class SwinTransformer(nn.Module):
                     self.patches_resolution[0] // (2 ** (i - 1)),
                     self.patches_resolution[1] // (2 ** (i - 1)),
                 )
-                print("Prev_input_resolution:", prev_input_resolution)
 
                 patch_merge = PatchMerging(
                     input_resolution=prev_input_resolution,
@@ -76,18 +78,20 @@ class SwinTransformer(nn.Module):
 
             self.blocks.append(swin_block)
 
-        # Patch Merging
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x: torch.Tensor, labels: torch.Tensor, mode: str) -> torch.Tensor:
         x = self.patch_embed(x)
 
         for idx, layer in enumerate(self.blocks):
-            print("=" * 100)
-            print(idx)
-            print(layer)
-            print("=" * 100)
             x = layer(x)
-            print("Final out shape:", x.shape)
+
+        x = self.norm_layer(x)
+        x = self.avgpool(x.transpose(1, 2))  # B C 1
+        x = torch.flatten(x, 1)
+        x = self.classification_head(x)
+        if mode == "loss":
+            return {"loss": F.cross_entropy(x, labels)}
+        elif mode == "predict":
+            return x, labels
         return x
 
 

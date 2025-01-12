@@ -210,7 +210,6 @@ class WindowMSA(nn.Module):
 
         q = q * d
         attn = q @ k.transpose(-2, -1)
-        print(attn.shape)
 
         # get the relative position bais
         relative_position_bias = self.relative_position_bias_table[self.relative_position_index.view(-1)].view(
@@ -221,7 +220,6 @@ class WindowMSA(nn.Module):
         attn = attn + relative_position_bias.unsqueeze(0)
 
         # print("Attn matrix after adding position bias:", attn.shape)
-        print(self.shift_size)
 
         # Adding attention mask
         if self.shift_size <= 0:

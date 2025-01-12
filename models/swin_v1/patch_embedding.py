@@ -38,7 +38,6 @@ class PatchEmbeddings(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.conv2d(x)
         B, C, H, W = x.shape
-        print(H, W)
         x = x.view(B, C, -1).permute(0, 2, 1)  # B * (H * W) *C
         x = self.norm_layer(x)
         return x

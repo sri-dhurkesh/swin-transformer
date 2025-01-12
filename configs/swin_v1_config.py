@@ -1,7 +1,7 @@
 image_size = (224, 224)
 patch_size = (4, 4)
 in_channels = 3
-num_classes = 5
+num_classes = 6
 embed_dim = 96
 depths = [2, 2, 6, 2]
 num_heads = [3, 6, 12, 24]
@@ -12,5 +12,5 @@ drop_path_rate = 0.5
 
 # dataset path
 dataset = dict(
-    batch_size=3,
+    batch_size=100,
 )
