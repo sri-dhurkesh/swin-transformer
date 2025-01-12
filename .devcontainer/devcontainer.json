@@ -22,7 +22,8 @@
 				"ms-toolsai.vscode-jupyter-slideshow",
 				"ms-python.vscode-pylance",
 				"charliermarsh.ruff",
-				"esbenp.prettier-vscode"
+				"esbenp.prettier-vscode",
+				"njpwerner.autodocstring"
 			]
 		}
 	}
