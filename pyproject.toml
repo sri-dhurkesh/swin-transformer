@@ -17,6 +17,8 @@ pdfkit = "^1.0.0"
 imgkit = "^1.2.3"
 matplotlib = "3.9"
 mmengine = "^0.10.5"
+mmpretrain = "^1.2.0"
+mmcv = "^2.2.0"
 
 
 [[tool.poetry.source]]

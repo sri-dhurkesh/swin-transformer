@@ -117,6 +117,20 @@ files = [
 pycparser = "*"
 
 [[package]]
+name = "click"
+version = "8.1.8"
+description = "Composable command line interface toolkit"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "click-8.1.8-py3-none-any.whl", hash = "sha256:63c132bbbed01578a06712a2d1f497bb62d9c1c0d329b7903a866228027263b2"},
+    {file = "click-8.1.8.tar.gz", hash = "sha256:ed53c9d8990d83c2a27deae68e4ee337473f6330c040a31d4225c9574d16096a"},
+]
+
+[package.dependencies]
+colorama = {version = "*", markers = "platform_system == \"Windows\""}
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 description = "Cross-platform colored terminal text."
@@ -287,6 +301,17 @@ python-versions = ">=3.5"
 files = [
     {file = "decorator-5.1.1-py3-none-any.whl", hash = "sha256:b8c3f85900b9dc423225913c5aace94729fe1fa9763b38939a95226f02d37186"},
     {file = "decorator-5.1.1.tar.gz", hash = "sha256:637996211036b6385ef91435e4fae22989472f9d571faba8927ba8253acbc330"},
+]
+
+[[package]]
+name = "einops"
+version = "0.8.0"
+description = "A new flavour of deep learning operations"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "einops-0.8.0-py3-none-any.whl", hash = "sha256:9572fb63046264a862693b0a87088af3bdc8c068fde03de63453cbbde245465f"},
+    {file = "einops-0.8.0.tar.gz", hash = "sha256:63486517fed345712a8385c100cb279108d9d47e6ae59099b07657e983deae85"},
 ]
 
 [[package]]
@@ -777,6 +802,24 @@ files = [
 ]
 
 [[package]]
+name = "markdown"
+version = "3.7"
+description = "Python implementation of John Gruber's Markdown."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "Markdown-3.7-py3-none-any.whl", hash = "sha256:7eb6df5690b81a1d7942992c97fad2938e956e79df20cbc6186e9c3a77b1c803"},
+    {file = "markdown-3.7.tar.gz", hash = "sha256:2ae2471477cfd02dbbf038d5d9bc226d40def84b4fe2986e49b59b6b472bbed2"},
+]
+
+[package.dependencies]
+importlib-metadata = {version = ">=4.4", markers = "python_version < \"3.10\""}
+
+[package.extras]
+docs = ["mdx-gh-links (>=0.2)", "mkdocs (>=1.5)", "mkdocs-gen-files", "mkdocs-literate-nav", "mkdocs-nature (>=0.6)", "mkdocs-section-index", "mkdocstrings[python]"]
+testing = ["coverage", "pyyaml"]
+
+[[package]]
 name = "markdown-it-py"
 version = "3.0.0"
 description = "Python port of markdown-it. Markdown parsing, done right!"
@@ -871,6 +914,17 @@ files = [
 ]
 
 [[package]]
+name = "mat4py"
+version = "0.6.0"
+description = "Load and save data in the Matlab (TM) MAT-file format."
+optional = false
+python-versions = "*"
+files = [
+    {file = "mat4py-0.6.0-py2.py3-none-any.whl", hash = "sha256:1c15f39c7df092f01506044f65999fc9c7d71306f8fc850b1003e15ed64c6bae"},
+    {file = "mat4py-0.6.0.tar.gz", hash = "sha256:438927e6c16831a337596f593eb0b391c4cf6c982280b635ae412e80dff7fd07"},
+]
+
+[[package]]
 name = "matplotlib"
 version = "3.9.0"
 description = "Python plotting package"
@@ -949,6 +1003,33 @@ files = [
 ]
 
 [[package]]
+name = "mmcv"
+version = "2.2.0"
+description = "OpenMMLab Computer Vision Foundation"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "mmcv-2.2.0.tar.gz", hash = "sha256:ac479247e808d8802f89eadf04d4118de86bdfe81361ec5aed0cc1bf731c67c9"},
+]
+
+[package.dependencies]
+addict = "*"
+mmengine = ">=0.3.0"
+numpy = "*"
+opencv-python = ">=3"
+packaging = "*"
+Pillow = "*"
+pyyaml = "*"
+regex = {version = "*", markers = "sys_platform == \"win32\""}
+yapf = "*"
+
+[package.extras]
+all = ["Pillow", "PyTurboJPEG", "addict", "coverage", "lmdb", "mmengine (>=0.3.0)", "ninja", "numpy", "onnx", "onnxoptimizer", "onnxruntime", "packaging", "psutil", "pytest", "pytest-runner", "pyyaml", "regex", "scipy", "tifffile", "yapf"]
+build = ["pytest-runner"]
+optional = ["ninja", "psutil"]
+tests = ["PyTurboJPEG", "coverage", "lmdb", "onnx", "onnxoptimizer", "onnxruntime", "pytest", "scipy", "tifffile"]
+
+[[package]]
 name = "mmengine"
 version = "0.10.5"
 description = "Engine of OpenMMLab projects"
@@ -973,6 +1054,64 @@ yapf = "*"
 [package.extras]
 all = ["addict", "aim (<=3.17.5)", "bitsandbytes", "clearml", "coverage", "dadaptation", "dvclive", "lion-pytorch", "lmdb", "matplotlib", "mlflow", "numpy", "parameterized", "pydantic (==1.10.9)", "pytest", "pyyaml", "regex", "rich", "termcolor", "transformers", "yapf"]
 tests = ["aim (<=3.17.5)", "bitsandbytes", "clearml", "coverage", "dadaptation", "dvclive", "lion-pytorch", "lmdb", "mlflow", "parameterized", "pydantic (==1.10.9)", "pytest", "transformers"]
+
+[[package]]
+name = "mmpretrain"
+version = "1.2.0"
+description = "OpenMMLab Model Pretraining Toolbox and Benchmark"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "mmpretrain-1.2.0-py2.py3-none-any.whl", hash = "sha256:96156327c509cbf17fdc5867f7bc89142df6f63be38ecd67e91b41dc5e538933"},
+    {file = "mmpretrain-1.2.0.tar.gz", hash = "sha256:bb3e975c62db8ca7d2d4a02ac63587c45ec067eeb0c4803e4a87aab8883ff19c"},
+]
+
+[package.dependencies]
+einops = "*"
+importlib-metadata = "*"
+mat4py = "*"
+matplotlib = "*"
+modelindex = "*"
+numpy = "*"
+rich = "*"
+
+[package.extras]
+all = ["albumentations (>=0.3.2)", "coverage", "einops", "grad-cam (>=1.3.7,<1.5.0)", "importlib-metadata", "interrogate", "mat4py", "matplotlib", "modelindex", "numpy", "pytest", "requests", "rich", "scikit-learn"]
+mim = ["mmcv (>=2.0.0,<2.4.0)", "mmengine (>=0.8.3,<1.0.0)"]
+multimodal = ["pycocotools", "transformers (>=4.28.0)"]
+optional = ["albumentations (>=0.3.2)", "grad-cam (>=1.3.7,<1.5.0)", "requests", "scikit-learn"]
+tests = ["coverage", "interrogate", "pytest"]
+
+[[package]]
+name = "model-index"
+version = "0.1.11"
+description = "Create a source of truth for ML model results and browse it on Papers with Code"
+optional = false
+python-versions = "*"
+files = [
+    {file = "model-index-0.1.11.tar.gz", hash = "sha256:2f9870200f3b00813881b07b90d2c67291663534e43915c75fe476b6977bf2ad"},
+    {file = "model_index-0.1.11-py3-none-any.whl", hash = "sha256:a2a4d4431cd44e571d31e223cc4b0432663a62689de453bdb666e56a514b0e07"},
+]
+
+[package.dependencies]
+click = "*"
+markdown = "*"
+ordered-set = "*"
+pyyaml = "*"
+
+[[package]]
+name = "modelindex"
+version = "0.0.2"
+description = "This is an alias for the model-index library."
+optional = false
+python-versions = "*"
+files = [
+    {file = "modelindex-0.0.2-py3-none-any.whl", hash = "sha256:ad6cfabccaa1ae03ab088689a69707d31643c179accc3d57163112312fe5e3d7"},
+    {file = "modelindex-0.0.2.tar.gz", hash = "sha256:f6d15020225dad46f10f8d88555d9afd8461a04c0f6671dcb6edf8e2198d2576"},
+]
+
+[package.dependencies]
+model-index = "*"
 
 [[package]]
 name = "mpmath"
@@ -1086,6 +1225,20 @@ numpy = [
     {version = ">=1.23.5", markers = "python_version >= \"3.11\" and python_version < \"3.12\""},
     {version = ">=1.26.0", markers = "python_version >= \"3.12\""},
 ]
+
+[[package]]
+name = "ordered-set"
+version = "4.1.0"
+description = "An OrderedSet is a custom MutableSet that remembers its order, so that every"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "ordered-set-4.1.0.tar.gz", hash = "sha256:694a8e44c87657c59292ede72891eb91d34131f6531463aab3009191c77364a8"},
+    {file = "ordered_set-4.1.0-py3-none-any.whl", hash = "sha256:046e1132c71fcf3330438a539928932caf51ddbc582496833e23de611de14562"},
+]
+
+[package.extras]
+dev = ["black", "mypy", "pytest"]
 
 [[package]]
 name = "packaging"
@@ -2092,4 +2245,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "92dd93aa854ea4b156dbee045cc125cb074ddd642ce6d0805e967527553c0c8a"
+content-hash = "282e6cf97f6b1b7953a4820a9a816e0d53bdf149afdd4b16ea1459342d4cf77d"
